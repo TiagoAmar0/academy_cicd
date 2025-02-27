@@ -22,11 +22,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Docker Build
+    - name: Maven build
       uses: TiagoAmar0/academy_cicd/.github/actions/maven_build@main
+
+    - name: Docker Build
+      uses: TiagoAmar0/academy_cicd/.github/actions/docker_build@main
       with:
         image_name: academy
-        tag: 1234
+        tag_name: 1234
         dockerfile_path: src/main/docker/Dockerfile.jvm
 #
 #    - name: Push to Dockerhub
