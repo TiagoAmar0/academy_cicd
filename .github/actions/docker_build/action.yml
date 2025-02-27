@@ -18,9 +18,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV
-      shell: bash
     - run: echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
       shell: bash
-    - run: docker build . --file ${{ inputs.dockerfile_path }} --tag ${{ inputs.image_name }}:${{ env.TAG }}
+    - name: Define image name
+      run: echo "DOCKER_IMAGE_TAG_NAME=${{ inputs.image_name }}:${{ env.TAG }}" >> $GITHUB_ENV
+      shell: bash
+    - run: docker build . --file ${{ inputs.dockerfile_path }} --tag ${{ env.DOCKER_IMAGE_TAG_NAME }}
       shell: bash

@@ -28,9 +28,13 @@ jobs:
     - name: Docker Build
       uses: TiagoAmar0/academy_cicd/.github/actions/docker_build@main
       with:
-        image_name: academy
+        image_name: tiagoamar0/academy
         tag_name: 1234
         dockerfile_path: src/main/docker/Dockerfile.jvm
+
+    - name: Verify Docker images
+      run: docker images
+      shell: bash
 
     - name: Push to Dockerhub
       uses: TiagoAmar0/academy_cicd/.github/actions/dockerhub_push@main
