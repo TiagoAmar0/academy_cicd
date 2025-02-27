@@ -32,4 +32,4 @@ jobs:
 #    - name: Create a new Docker image
 #      run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
     - name: Docker Build
-      uses: TiagoAmar0/academy_cicd/.github/actions/docker_build@main
+      uses: TiagoAmar0/academy_cicd/.github/actions/maven_build@main
