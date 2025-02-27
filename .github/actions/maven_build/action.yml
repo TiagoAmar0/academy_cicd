@@ -5,6 +5,10 @@ inputs:
     description: "src/main/docker/Dockerfile.jvm"
     required: false
     default: "Dockerfile"
+  tag:
+    description: "Tag for the Docker image"
+    required: false
+    default: ""
 runs:
   using: composite
   steps:
@@ -19,5 +23,5 @@ runs:
       shell: bash
     - run: mvn -B package --file pom.xml
       shell: bash
-    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$TAG
+    - run: docker build . --file ${{ inputs.dockerfile_path }} --tag academy:${{ env.TAG }}
       shell: bash
