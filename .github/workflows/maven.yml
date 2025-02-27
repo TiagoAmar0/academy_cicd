@@ -25,14 +25,15 @@ jobs:
     - name: Docker Build
       uses: TiagoAmar0/academy_cicd/.github/actions/maven_build@main
       with:
-        tag: academy
+        image_name: academy
+        tag: 1234
         dockerfile_path: src/main/docker/Dockerfile.jvm
-
-    - name: Push to Dockerhub
-      uses: TiagoAmar0/academy_cicd/.github/actions/dockerhub_push@main
-      with:
-        username: ${{env.DOCKERHUB_USERNAME}}
-        password: ${{env.DOCKERHUB_PASSWORD}}
+#
+#    - name: Push to Dockerhub
+#      uses: TiagoAmar0/academy_cicd/.github/actions/dockerhub_push@main
+#      with:
+#        username: ${{env.DOCKERHUB_USERNAME}}
+#        password: ${{env.DOCKERHUB_PASSWORD}}
 
 
 #    - name: Build and push Docker image

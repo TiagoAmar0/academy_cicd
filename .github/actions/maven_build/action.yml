@@ -1,27 +1,28 @@
 name: Build
 description: Build application with Maven and create a new Docker image
+
 inputs:
   dockerfile_path:
     description: "The path to the dockerfile"
     required: false
     default: "Dockerfile"
-  tag:
+  tag_name:
     description: "Tag for the Docker image"
     required: false
-    default: ""
+    default: $(date +%s)
+  image_name:
+    description: "The name of the generated image"
+    required: false
+    default: "academy"
+
 runs:
   using: composite
   steps:
-    - run: echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV
+    - run: echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV
       shell: bash
-    - run: |
-        if [ -z "${{ inputs.tag }}" ]; then
-          echo "TAG=$(date +%s)" >> $GITHUB_ENV
-        else
-          echo "TAG=${{ inputs.tag }}" >> $GITHUB_ENV
-        fi
+    - run: echo "TAG=${{ inputs.tag }}" >> $GITHUB_ENV
       shell: bash
     - run: mvn -B package --file pom.xml
       shell: bash
-    - run: docker build . --file ${{ inputs.dockerfile_path }} --tag academy:${{ env.TAG }}
+    - run: docker build . --file ${{ inputs.dockerfile_path }} --tag ${{inputs.image_name}}:${{ env.TAG }}
       shell: bash
