@@ -1,0 +1,14 @@
+name: Build
+description: Build application with Maven and create a new Docker image
+inputs:
+  dockerfile_path:
+    description: "src/main/docker/Dockerfile.jvm"
+    required: false
+    default: "Dockerfile"
+runs:
+  using: composite
+  steps:
+    - run: mvn -B package --file pom.xml
+      shell: bash
+    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+      shell: bash
