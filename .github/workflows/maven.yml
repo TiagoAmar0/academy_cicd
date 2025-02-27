@@ -8,7 +8,7 @@ on:
 
 env:
   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
-  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 jobs:
 
   build:
@@ -31,12 +31,12 @@ jobs:
         image_name: academy
         tag_name: 1234
         dockerfile_path: src/main/docker/Dockerfile.jvm
-#
-#    - name: Push to Dockerhub
-#      uses: TiagoAmar0/academy_cicd/.github/actions/dockerhub_push@main
-#      with:
-#        username: ${{env.DOCKERHUB_USERNAME}}
-#        password: ${{env.DOCKERHUB_PASSWORD}}
+
+    - name: Push to Dockerhub
+      uses: TiagoAmar0/academy_cicd/.github/actions/dockerhub_push@main
+      with:
+        username: ${{env.DOCKERHUB_USERNAME}}
+        password: ${{env.DOCKERHUB_PASSWORD}}
 
 
 #    - name: Build and push Docker image
