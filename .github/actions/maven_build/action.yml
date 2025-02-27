@@ -19,5 +19,5 @@ runs:
       shell: bash
     - run: mvn -B package --file pom.xml
       shell: bash
-    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$TAG
       shell: bash
