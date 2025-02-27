@@ -35,3 +35,4 @@ jobs:
       uses: TiagoAmar0/academy_cicd/.github/actions/maven_build@main
       with:
         tag: academy
+        dockerfile_path: src/main/docker/Dockerfile.jvm

@@ -2,7 +2,7 @@ name: Build
 description: Build application with Maven and create a new Docker image
 inputs:
   dockerfile_path:
-    description: "src/main/docker/Dockerfile.jvm"
+    description: "The path to the dockerfile"
     required: false
     default: "Dockerfile"
   tag:
