@@ -8,6 +8,15 @@ inputs:
 runs:
   using: composite
   steps:
+    - run: echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV
+      shell: bash
+    - run: |
+        if [ -z "${{ inputs.tag }}" ]; then
+          echo "TAG=$(date +%s)" >> $GITHUB_ENV
+        else
+          echo "TAG=${{ inputs.tag }}" >> $GITHUB_ENV
+        fi
+      shell: bash
     - run: mvn -B package --file pom.xml
       shell: bash
     - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
